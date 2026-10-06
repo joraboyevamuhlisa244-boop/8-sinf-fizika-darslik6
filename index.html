@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⚡ 8-sinf Fizika | I chorak</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#07111f;color:#eef7ff}
+:root{--a:#38d9ff;--b:#8268ff;--card:#102238;--muted:#9db4ca}
+header{position:sticky;top:0;z-index:10;background:#07111fee;border-bottom:1px solid #24445e;backdrop-filter:blur(12px)}
+nav{max-width:1200px;margin:auto;padding:13px 18px;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:900}.logo i{color:var(--a);font-style:normal}
+.btn{border:0;border-radius:12px;padding:10px 15px;color:white;background:linear-gradient(135deg,var(--b),#398cff);font-weight:800;cursor:pointer}
+.hero{max-width:1200px;margin:25px auto;padding:18px}.heroBox{border:1px solid #2c5976;border-radius:28px;padding:40px;background:radial-gradient(circle at 80% 20%,#174d6e,transparent 35%),linear-gradient(135deg,#102a45,#0b172a);overflow:hidden;position:relative}
+.heroBox:after{content:"⚡";position:absolute;right:7%;bottom:-35px;font-size:180px;opacity:.08}
+.badges{display:flex;flex-wrap:wrap;gap:8px}.badge{padding:7px 11px;border-radius:30px;background:#173957;border:1px solid #2d607f;color:#bcecff}
+h1{font-size:clamp(35px,7vw,68px);margin:18px 0 10px}h1 span{color:var(--a)}.hero p{max-width:760px;color:var(--muted);font-size:18px;line-height:1.6}
+main{max-width:1200px;margin:auto;padding:0 18px 50px}.title{font-size:29px;margin:28px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px}.card{background:linear-gradient(145deg,#10263d,#0c1b2e);border:1px solid #24465f;border-radius:20px;padding:18px;transition:.2s}.card:hover{transform:translateY(-4px);border-color:var(--a);box-shadow:0 12px 30px #0005}.n{color:var(--a);font-size:13px;font-weight:900}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.45}.card .btn{background:#173957;border:1px solid #326a8e}
+#lesson{display:none;margin-top:22px;padding:25px;border:1px solid #28516c;border-radius:22px;background:#091827}#lesson.show{display:block}.lessonHead{display:flex;justify-content:space-between;gap:10px;align-items:start}.lessonHead h2{margin-top:0;font-size:30px}.box{padding:16px;border-radius:15px;background:#102a41;border-left:4px solid var(--a);margin:15px 0;line-height:1.6}.formula{text-align:center;font-size:24px;padding:18px;border-radius:15px;background:#06111d;color:#9cecff;margin:15px 0}
+.sim{border:1px solid #244a64;border-radius:18px;padding:16px;background:#06111c;margin:18px 0}.stage{height:190px;border-radius:14px;background:radial-gradient(circle,#173e5a,#06101b 68%);position:relative;overflow:hidden}.particle{position:absolute;width:45px;height:45px;border-radius:50%;display:grid;place-items:center;font-weight:900;transition:1s}.p1{background:#36d9ff;left:22%;top:58%;box-shadow:0 0 25px #36d9ff}.p2{background:#ff6b91;left:68%;top:25%;box-shadow:0 0 25px #ff6b91}.electron{font-size:26px;position:absolute;color:#fff;transition:1s}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{border:0;border-radius:11px;padding:10px 13px;background:#183b58;color:white;font-weight:700;cursor:pointer}
+.progress{height:8px;background:#162c40;border-radius:10px;overflow:hidden;margin:10px 0}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:.5s}
+.quiz{margin-top:30px}.q{background:#10253a;border:1px solid #284a65;border-radius:15px;padding:17px;margin:10px 0}.q label{display:block;padding:7px;color:#d7e8f5;cursor:pointer}.score{font-size:21px;margin-top:14px}
+footer{text-align:center;padding:30px;border-top:1px solid #203b53;color:#819bb2}
+@media(max-width:600px){.heroBox{padding:25px}.lessonHead{display:block}}
+</style>
+</head>
+<body>
+<header><nav><div class="logo">⚡ <i>8-SINF FIZIKA</i> · I CHORAK</div><button class="btn" onclick="go('mavzular')">📚 Mavzular</button></nav></header>
+
+<section class="hero"><div class="heroBox">
+<div class="badges"><span class="badge">🎮 Interaktiv</span><span class="badge">🧪 Simulyatsiya</span><span class="badge">📝 Test</span><span class="badge">🏆 Reyting</span></div>
+<h1>Fizikani <span>tajriba qilib</span> o‘rgan!</h1>
+<p>8-sinf Fizika fanidan I chorak uchun zamonaviy interaktiv elektron darslik. Har bir mavzuni o‘rganing, simulyatsiyani bajaring va bilimingizni test bilan tekshiring.</p>
+<button class="btn" onclick="go('mavzular')">🚀 Darsni boshlash</button>
+</div></section>
+
+<main>
+<h2 id="mavzular" class="title">📚 I chorak mavzulari</h2>
+<div class="grid" id="cards"></div>
+
+<section id="lesson"></section>
+
+<section class="quiz">
+<h2 class="title">🏆 Yakuniy challenge</h2>
+<p style="color:var(--muted)">8 ta savol. Nechtasini to‘g‘ri topa olasiz?</p>
+<div id="quizBox"></div><button class="btn" onclick="check()">🎯 Natijani ko‘rish</button><div id="score" class="score"></div>
+</section>
+</main>
+<footer>⚡ 8-sinf Fizika · I chorak | HTML5 interaktiv elektron darslik</footer>
+
+<script>
+const topics=[
+["Jismlarning zaryadlanishi","Ishqalanish, elektronlarning ko‘chishi va zaryadlanish.","Zaryadlanish — jismning elektr zaryadiga ega bo‘lish jarayoni.","sim"],
+["Elektr zaryad","Musbat va manfiy zaryad. Elementar zaryad.","SI birligi: kulon (C). Bir xil zaryadlar itarishadi, har xil zaryadlar tortishadi.","charge"],
+["Kulon qonuni","Zaryadlangan jismlarning o‘zaro ta’siri.","F = k·|q₁q₂|/r²","coulomb"],
+["Masalalar yechish","Berilgan kattaliklarni SI ga o‘tkazish va formuladan foydalanish.","Algoritm: Berilgan → Formula → Hisoblash → Javob.","none"],
+["Elektr maydon","Zaryad atrofida mavjud bo‘ladigan fizik maydon.","E = F/q","field"],
+["O‘tkazgichlarda zaryad taqsimlanishi","Erkin elektronlar va elektr muvozanati.","Ortiqcha zaryad o‘tkazgich sirtida to‘planadi.","charge"],
+["Elektr maydon bo‘yicha masalalar","E, F va q orasidagi bog‘lanish.","E = F/q; F = Eq","none"],
+["Tabiatdagi elektr hodisalari","Chaqmoq, momaqaldiroq va atmosferadagi elektr hodisalari.","Bulutlarda zaryadlarning ajralishi kuchli elektr maydon hosil qiladi.","field"],
+["1-Nazorat ishi","Elektr zaryad, Kulon qonuni va elektr maydon bo‘yicha nazorat.","Asosiy tushunchalarni mustahkamlash.","none"],
+["Elektr toki haqida tushuncha","Zaryadlangan zarrachalarning tartibli harakati.","Elektr toki — zaryadlangan zarrachalarning tartibli harakati.","circuit"],
+["Tok manbalari","Batareya, akkumulyator va boshqa tok manbalari.","Tok manbai elektr energiyasini zanjirga uzatadi.","circuit"],
+["Elektr kuchlanish","Kuchlanish va voltmetr.","U = A/q; birlik — volt (V).","voltage"],
+["Tok kuchi","Tok kuchi va ampermetr.","I = q/t; birlik — amper (A).","current"],
+["Elektr toki bo‘yicha masalalar","I, q, t, U va A kattaliklari bilan masalalar.","Formulani to‘g‘ri tanlash va birliklarni moslash.","none"],
+["Laboratoriya ishi","Elektr zanjirini yig‘ish va o‘lchash asboblaridan foydalanish.","Ampermetr — ketma-ket, voltmetr — parallel ulanadi.","circuit"],
+["Elektr qarshilik","O‘tkazgichning tokka qarshilik ko‘rsatishi.","Qarshilik birligi — om (Ω).","resistance"],
+["Rezistor, reostat, potensiometr","Qarshilikni o‘zgartirish va tokni boshqarish.","Reostat zanjirdagi tokni boshqarishga yordam beradi.","resistance"],
+["2-Nazorat ishi","I chorak yakuniy nazorati.","Elektr toki bo‘yicha asosiy bilimlarni tekshirish.","none"]
+];
+
+const cards=document.getElementById("cards");
+topics.forEach((t,i)=>cards.innerHTML+=`<article class="card"><div class="n">${String(i+1).padStart(2,"0")} · MAVZU</div><h3>${t[0]}</h3><p>${t[1]}</p><button class="btn" onclick="openLesson(${i})">📖 O‘rganish</button></article>`);
+
+function openLesson(i){
+let t=topics[i], sim="";
+if(t[3]=="sim")sim=`<div class="sim"><b>🧪 Zaryadlanish laboratoriyasi</b><p>“Ishqalash”ni bosing va zaryadlarning o‘zgarishini kuzating.</p><div class="stage"><div id="p1" class="particle p1">−</div><div id="p2" class="particle p2">+</div><div id="e1" class="electron" style="left:45%;top:55%">e⁻</div></div><div class="actions"><button onclick="rub()">⚡ Ishqalash</button><button onclick="resetSim()">↺ Qaytarish</button></div></div>`;
+if(t[3]=="coulomb")sim=`<div class="sim"><b>⚖️ Kulon qonuni simulyatsiyasi</b><p>Masofani o‘zgartiring.</p><input type="range" min="1" max="10" value="5" oninput="coul(this.value)" style="width:100%"><div id="coul" class="formula">r = 5 → F ∝ 1/r²</div></div>`;
+if(["circuit","voltage","current"].includes(t[3]))sim=`<div class="sim"><b>🔌 Elektr zanjiri</b><div class="stage"><div style="position:absolute;left:12%;top:48%;font-size:48px">🔋</div><div style="position:absolute;left:28%;top:49%;width:44%;height:5px;background:#8edfff"></div><div id="lamp" style="position:absolute;right:13%;top:37%;font-size:55px">💡</div></div><div class="actions"><button onclick="toggleLamp()">▶ Tokni yoqish</button></div></div>`;
+if(t[3]=="field")sim=`<div class="sim"><b>🌐 Elektr maydonni kuzatish</b><div class="stage"><div style="position:absolute;left:45%;top:38%;font-size:58px">⚡</div><div style="position:absolute;inset:20px;border:2px dashed #38d9ff;border-radius:50%;opacity:.45"></div><div style="position:absolute;inset:45px;border:2px dashed #8268ff;border-radius:50%;opacity:.45"></div></div></div>`;
+document.getElementById("lesson").innerHTML=`<div class="lessonHead"><h2>📘 ${t[0]}</h2><button class="btn" onclick="closeLesson()">✕</button></div><div class="progress"><div style="width:${Math.round((i+1)/topics.length*100)}%"></div></div><p>${t[1]}</p><div class="box">💡 <b>Asosiy g‘oya:</b> ${t[2]}</div>${t[2].includes("=")?`<div class="formula">${t[2]}</div>`:""}${sim}<div class="box">🎯 <b>O‘quvchi topshirig‘i:</b> Mavzuni o‘qib, yuqoridagi interaktiv elementni bajaring va yakuniy challenge savollarini ishlang.</div><div class="actions"><button onclick="prev(${i})">← Oldingi</button><button onclick="next(${i})">Keyingi →</button></div>`;
+document.getElementById("lesson").classList.add("show");document.getElementById("lesson").scrollIntoView({behavior:"smooth"});
+}
+function closeLesson(){document.getElementById("lesson").classList.remove("show")}
+function prev(i){openLesson(Math.max(0,i-1))}
+function next(i){openLesson(Math.min(topics.length-1,i+1))}
+function rub(){document.getElementById("e1").style.left="72%";document.getElementById("e1").style.top="22%";document.getElementById("p1").textContent="− −";document.getElementById("p2").textContent="+"}
+function resetSim(){document.getElementById("e1").style.left="45%";document.getElementById("e1").style.top="55%";document.getElementById("p1").textContent="−";document.getElementById("p2").textContent="+"}
+function coul(r){document.getElementById("coul").textContent=`r = ${r} → F ∝ 1/${r}²`}
+function toggleLamp(){let l=document.getElementById("lamp");l.textContent=l.textContent==="💡"?"✨💡":"💡"}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+
+const qs=[
+["Elektr zaryadining SI birligi?",["Volt","Kulon","Amper","Om"],1],
+["Bir xil ishorali zaryadlar qanday ta’sirlashadi?",["Tortishadi","Itarishadi","Ta’sirlashmaydi","Aylanadi"],1],
+["Kulon qonuni?",["F=k|q₁q₂|/r²","U=A/q","I=q/t","E=F/q"],0],
+["Elektr maydon kuchlanganligi?",["E=F/q","F=ma","I=q/t","P=A/t"],0],
+["Tok kuchi birligi?",["Volt","Kulon","Amper","Om"],2],
+["Kuchlanish birligi?",["Volt","Amper","Kulon","Om"],0],
+["Tok kuchini qaysi asbob o‘lchaydi?",["Voltmetr","Ampermetr","Termometr","Dinamometr"],1],
+["Voltmetr qanday ulanadi?",["Ketma-ket","Parallel","Faqat manbaga","Ulanmaydi"],1]
+];
+document.getElementById("quizBox").innerHTML=qs.map((q,i)=>`<div class="q"><b>${i+1}. ${q[0]}</b>${q[1].map((x,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${x}</label>`).join("")}</div>`).join("");
+function check(){let s=0;qs.forEach((q,i)=>{let x=document.querySelector(`input[name=q${i}]:checked`);if(x&&+x.value===q[2])s++});document.getElementById("score").innerHTML=`Natija: <b>${s}/${qs.length}</b> ${s>=7?"🎉 A’lo natija!":s>=5?"👍 Yaxshi, yana takrorlang!":"📚 Mavzularni yana bir bor ko‘rib chiqing."}`}
+</script>
+</body></html>
